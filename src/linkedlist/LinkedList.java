@@ -373,8 +373,10 @@ public class LinkedList {
 	Node getMiddleNode(Node head) {
 		if (head == null)
 			return head;
-		Node fast = head.next;
+
 		Node slow = head;
+		Node fast = head.next;
+
 		// Move fast by two and slow ptr by one
 		// Finally slow will point to middle node
 		while (fast != null) {
