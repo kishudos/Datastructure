@@ -1,13 +1,14 @@
 package stack;
 
 public class StackUsingArray {
-	private int top, capacity;
-	private int[] stack = null;
+	private int top;
+	private int capacity;
+	private int[] stack;
 
-	public StackUsingArray(int capacity) {
-		this.capacity = capacity;
-		this.stack = new int[capacity];
+	public StackUsingArray(int size) {
 		this.top = -1;
+		this.capacity = size;
+		this.stack = new int[this.capacity];
 	}
 
 	public boolean isEmpty() {
@@ -15,50 +16,35 @@ public class StackUsingArray {
 	}
 
 	public boolean isFull() {
-		return (this.top == this.capacity - 1);
+		return (this.top + 1) == this.capacity;
 	}
 
-	public void push(int item) {
-		if (!this.isFull()) {
-			stack[++top] = item;
-			System.out.println("Item pushed");
+	public void push(int data) {
+		if (!isFull()) {
+			this.stack[++this.top] = data;
 		} else {
-			System.out.println("Stack full.!");
+			System.out.println("Stack is full, could not pushed into it");
 		}
 	}
 
 	public int pop() {
+		int item = -1;
 		if (!isEmpty()) {
-			return stack[top--];
+			item = this.stack[top--];
 		} else {
-			System.out.println("Stack is already empty ..!");
-			return -1;
+			System.out.println("Stack is empty");
 		}
+		return item;
 	}
 
 	public int peek() {
+		int peek;
 		if (!isEmpty()) {
-			return this.stack[top];
+			peek = this.stack[this.top];
 		} else {
-			System.out.println("Stack is already empty ..!");
-			return -1;
+			System.out.println("Stack is empty");
+			peek = -1;
 		}
-	}
-
-	public void print() {
-		for (int i = 0; i <= this.top; ++i)
-			System.out.println(this.stack[i] + " ");
-	}
-
-	public static void main(String[] args) {
-		StackUsingArray st = new StackUsingArray(1);
-		st.pop();
-		st.push(1);
-		st.push(2);
-		st.push(3);
-		st.push(4);
-		st.print();
-		System.out.println("Pop item" + st.pop());
-		st.print();
+		return peek;
 	}
 }
