@@ -312,6 +312,32 @@ public class LinkedList {
 		return nThNode;
 	}
 
+	public void rotateAntiClockWise(int k) {
+		if (k == 0)
+			return;
+		int count = 1;
+		Node curr = head;
+		
+		while (count < k && curr != null) {
+			count++;
+			curr = curr.next;
+		}
+		
+		if(curr!=null) {
+			Node newHead = curr;
+			
+			while(curr.next!=null) {
+				curr = curr.next;
+			}
+			// curr is at last node
+			curr.next = head;
+			head = newHead.next;
+			newHead.next = null;
+		}else {
+			System.out.println("Rotation key is more than number of elements in list");
+		}
+	}
+
 	public boolean hasLoop() {
 		Node fast = head;
 		Node slow = head;
